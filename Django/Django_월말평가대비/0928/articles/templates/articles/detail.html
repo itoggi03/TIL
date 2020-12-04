@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>DETAIL</h1>
+<hr>
+<h3>제목: {{ article.title }}</h3>
+<p>내용: {{ article.content }}</p>
+<p>생성일자: {{ article.created_at }}</p>
+<p>수정일자: {{ article.updated_at }}</p>
+<hr>
+<a href="{% url 'articles:update' article.pk %}">[Update]</a>
+<a href="{% url 'articles:delete' article.pk %}">[Delete]</a>
+<a href="{% url 'articles:index'%}">[Back]</a>
+<hr>
+{% for comment in comments %}
+  {{ comment.user }} - {{ comment.content }}
+{% endfor %}
+<hr>
+<form action="" method="POST">
+{% csrf_token %}
+{{ comment_form.as_p }}
+<input type="submit">
+</form>
+{% endblock content %}

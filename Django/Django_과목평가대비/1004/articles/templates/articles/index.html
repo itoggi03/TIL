@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>INDEX</h1>
+<hr>
+{% for article in articles %}
+  <p>{{ article.pk }}번째 글</p>
+  <h4>제목: {{ article.title }}</h4>
+  <p>생성일: {{ article.created_at|date:"DATETIME_FORMAT" }}</p>
+  <p>수정일: {{ article.updated_at|date:"DATETIME_FORMAT" }}</p>
+  <a href="{% url 'articles:detail' article.pk %}">Detail</a>
+  <hr>
+{% endfor %}
+{% endblock content %}
